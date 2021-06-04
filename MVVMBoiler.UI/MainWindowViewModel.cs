@@ -16,7 +16,6 @@ namespace MVVMBoiler.UI
         public RelayCommand<string> NavigateCommand { get; set; }
         public MainWindowViewModel()
         {
-            //CurrentViewModel = new CustomerListViewModel();
             NavigateCommand = new RelayCommand<string>(OnNavigate);
         }
 
@@ -28,9 +27,8 @@ namespace MVVMBoiler.UI
                     CurrentViewModel = _orderPrepViewModel;
                     break;
                 case nameof(CustomerListViewModel):
-                    CurrentViewModel = _customerListViewModel;
-                    break;
                 default:
+                    CurrentViewModel = _customerListViewModel;
                     break;
             }
         }

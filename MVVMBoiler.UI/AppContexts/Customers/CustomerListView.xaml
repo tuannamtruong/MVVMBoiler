@@ -7,45 +7,52 @@
              xmlns:local="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+    <!--HOTKEY-->
     <UserControl.InputBindings>
         <KeyBinding Key="D" Modifiers="Control" Command="{Binding DeleteCommand}"/>
     </UserControl.InputBindings>
-    <UserControl.DataContext>
-        <local:CustomerListViewModel/>
-    </UserControl.DataContext>
+    <!--RESOURCES-->
     <UserControl.Resources>
         <DataTemplate x:Key="CustomerTemplate">
             <Border BorderThickness="3" BorderBrush="Teal">
                 <StackPanel>
                     <TextBlock Text="{Binding FirstName}" />
-                    <TextBlock Text="{Binding LastName}" /> 
+                    <TextBlock Text="{Binding LastName}" />
                 </StackPanel>
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-
+    <!--VIEW BEHAVIOURS-->
     <behaviour:Interaction.Triggers>
         <behaviour:EventTrigger EventName="Loaded">
             <behaviour:CallMethodAction TargetObject="{Binding}" MethodName="LoadCustomers"/>
         </behaviour:EventTrigger>
     </behaviour:Interaction.Triggers>
-    
+    <!--VIEW-->
     <Grid>
+        <!--COL/ROW DEF-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--BUTTON-->
         <Button Content="Delete" Command="{Binding DeleteCommand}" Width="50" HorizontalAlignment="Left"/>
-
+        <!--CUSTOMER LISTVIEW-->
         <DataGrid ItemsSource="{Binding Customers}"
-                  AutoGenerateColumns="False" 
-                  SelectedItem="{Binding SelectedCustomer}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
                   Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name"/>
-                <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name"/>
+                <DataGridTextColumn Width="*" >
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="FirstName" />
+                            <Binding Path="LastName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+             
             </DataGrid.Columns>
         </DataGrid>
 
