@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MVVMBoiler.DataAccess\MVVMBoiler.DataAccess.csproj" />
     <ProjectReference Include="..\MVVMBoiler.Models\MVVMBoiler.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

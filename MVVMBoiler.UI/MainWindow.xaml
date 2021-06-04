@@ -1,12 +1,16 @@
-﻿<Window x:Class="MVVMBoiler.UI.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMBoiler.UI"
+        xmlns:Customers="clr-namespace:MVVMBoiler.UI.AppContexts.Customers" xmlns:Orders="clr-namespace:MVVMBoiler.UI.AppContexts.Orders" x:Class="MVVMBoiler.UI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+
+        <Customers:CustomerListView/>
+
 
     </Grid>
 </Window>

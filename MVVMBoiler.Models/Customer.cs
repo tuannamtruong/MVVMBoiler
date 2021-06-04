@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace MVVMBoiler.Models
 {
@@ -10,8 +8,7 @@ namespace MVVMBoiler.Models
         {
             Orders = new List<Order>();
         }
-        [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<Order> Orders { get; set; }

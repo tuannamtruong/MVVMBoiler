@@ -1,0 +1,1 @@
+CustomerListViewModel constructor has an async/sync operation. Maybe move it to load/onbload method?

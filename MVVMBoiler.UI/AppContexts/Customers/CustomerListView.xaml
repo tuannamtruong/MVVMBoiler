@@ -6,7 +6,17 @@
              xmlns:local="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:CustomerListViewModel/>
+    </UserControl.DataContext>
     <Grid>
-            
+        <DataGrid ItemsSource="{Binding Customers}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name"/>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>
