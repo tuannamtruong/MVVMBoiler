@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 
 namespace MVVMBoiler.UI.Bases
 {
-    public class ModelWrapper<T> : NotifyDataErrorInfoBase
+    public class ModelWrapperBase<T> : NotifyDataErrorInfoBase
     {
-        public ModelWrapper(T model)
+        public ModelWrapperBase(T model)
         {
             Model = model;
         }
