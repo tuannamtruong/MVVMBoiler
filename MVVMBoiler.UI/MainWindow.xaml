@@ -3,7 +3,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMBoiler.UI"
-        xmlns:Customers="clr-namespace:MVVMBoiler.UI.AppContexts.Customers" 
+        xmlns:customers="clr-namespace:MVVMBoiler.UI.AppContexts.Customers" 
+        xmlns:orders="clr-namespace:MVVMBoiler.UI.AppContexts.Orders" 
+        xmlns:orderPrep="clr-namespace:MVVMBoiler.UI.AppContexts.OrderPrep" 
         x:Class="MVVMBoiler.UI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -12,13 +14,41 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type Customers:CustomerListViewModel}">
-            <Customers:CustomerListView/>
+        <DataTemplate DataType="{x:Type customers:CustomerListViewModel}">
+            <customers:CustomerListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type orders:OrderViewModel}">
+            <orders:OrderView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type orderPrep:OrderPrepViewModel}">
+            <orderPrep:OrderPrepView/>
         </DataTemplate>
     </Window.Resources>
     
     <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="NavBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Customers"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="CustomerListViewModel"
+                    Grid.Column="0" />
+            <Button Content="OrderPrep"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="OrderPrepViewModel"
+                    Grid.Column="2" />
+        </Grid>
+        <Grid x:Name="MainContent"
+              Grid.Row="1">
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
     </Grid>
 </Window>
   
