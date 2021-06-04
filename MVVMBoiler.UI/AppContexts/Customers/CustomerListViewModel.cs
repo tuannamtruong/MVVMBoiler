@@ -1,10 +1,8 @@
 ﻿using MVVMBoiler.Models;
 using MVVMBoiler.UI.Bases;
 using MVVMBoiler.UI.Services.Data;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace MVVMBoiler.UI.AppContexts.Customers
 {
@@ -18,14 +16,21 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             // Guard to check if the code is executed  in the designer 
             if(DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
                 return;
-
-            var customersTask = Task.Run(() => _customersRepository.GetAllAsync().Result);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
-            Customers = new ObservableCollection<Customer>(customersTask.Result);
         }
-
+        
         public RelayCommand DeleteCommand { get; private set; }
-        public ObservableCollection<Customer> Customers { get => _customers; set => _customers = value; }
+        public ObservableCollection<Customer> Customers
+        {
+            get => _customers; set
+            {
+                if(_customers != value)
+                {
+                    _customers = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private Customer _selectedCustomer;
 
@@ -37,6 +42,10 @@ namespace MVVMBoiler.UI.AppContexts.Customers
                 _selectedCustomer = value;
                 DeleteCommand.RaiseCanExecuteChanged();
             }
+        }
+        public async void LoadCustomers()
+        {
+            Customers = new ObservableCollection<Customer>(await _customersRepository.GetAllAsync());
         }
 
         #region ICommand

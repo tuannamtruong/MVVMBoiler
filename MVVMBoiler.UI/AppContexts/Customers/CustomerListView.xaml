@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:behaviour="http://schemas.microsoft.com/xaml/behaviors" 
              xmlns:local="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.InputBindings>
         <KeyBinding Key="D" Modifiers="Control" Command="{Binding DeleteCommand}"/>
     </UserControl.InputBindings>
@@ -17,12 +19,18 @@
             <Border BorderThickness="3" BorderBrush="Teal">
                 <StackPanel>
                     <TextBlock Text="{Binding FirstName}" />
-                    <TextBlock Text="{Binding LastName}" />
+                    <TextBlock Text="{Binding LastName}" /> 
                 </StackPanel>
             </Border>
         </DataTemplate>
     </UserControl.Resources>
 
+    <behaviour:Interaction.Triggers>
+        <behaviour:EventTrigger EventName="Loaded">
+            <behaviour:CallMethodAction TargetObject="{Binding}" MethodName="LoadCustomers"/>
+        </behaviour:EventTrigger>
+    </behaviour:Interaction.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
