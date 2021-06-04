@@ -42,7 +42,8 @@
         <DataGrid ItemsSource="{Binding Customers}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  SelectedItem="{Binding SelectedCustomer}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" >
                     <DataGridTextColumn.Binding>
