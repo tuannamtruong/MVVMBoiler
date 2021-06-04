@@ -6,5 +6,6 @@ namespace MVVMBoiler.UI.AppContexts.Orders
     public class OrderViewModel : ViewModelBase
     {
         public Order Order { get; set; }
+        public int CustomerId { get; set; }
     }
 }

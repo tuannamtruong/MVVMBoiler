@@ -17,6 +17,13 @@ namespace MVVMBoiler.UI
         public MainWindowViewModel()
         {
             NavigateCommand = new RelayCommand<string>(OnNavigate);
+            _customerListViewModel.PlaceOrderRequested += NavToOrder;
+        }
+
+        private void NavToOrder(int customerId)
+        {
+            _orderViewModel.CustomerId = customerId;
+            CurrentViewModel = _orderViewModel;
         }
 
         private void OnNavigate(string destViewModel)

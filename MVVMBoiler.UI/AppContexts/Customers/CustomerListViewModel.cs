@@ -1,6 +1,7 @@
 ﻿using MVVMBoiler.Models;
 using MVVMBoiler.UI.Bases;
 using MVVMBoiler.UI.Services.Data;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -17,8 +18,17 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             if(DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
                 return;
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
+            PlaceOrderCommand = new RelayCommand<Customer>(OnPlaceOrder);
         }
-        
+
+        private void OnPlaceOrder(Customer customer)
+        {
+            PlaceOrderRequested(customer.Id);
+        }
+
+        public RelayCommand<Customer> PlaceOrderCommand { get; private set; }
+        public event Action<int> PlaceOrderRequested = delegate { };
+
         public RelayCommand DeleteCommand { get; private set; }
         public ObservableCollection<Customer> Customers
         {
