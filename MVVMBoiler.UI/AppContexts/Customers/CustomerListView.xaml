@@ -9,7 +9,23 @@
     <UserControl.DataContext>
         <local:CustomerListViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate x:Key="CustomerTemplate">
+            <Border BorderThickness="3" BorderBrush="Teal">
+                <StackPanel>
+                    <TextBlock Text="{Binding FirstName}" />
+                    <TextBlock Text="{Binding LastName}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <DataGrid ItemsSource="{Binding Customers}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -17,6 +33,8 @@
                 <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name"/>
             </DataGrid.Columns>
         </DataGrid>
-
+        
+        <ListBox ItemsSource="{Binding Customers}" ItemTemplate="{StaticResource CustomerTemplate}" Grid.Row="1"/>
     </Grid>
 </UserControl>
+ 
