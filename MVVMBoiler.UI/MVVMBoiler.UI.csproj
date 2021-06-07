@@ -14,5 +14,4 @@
     <ProjectReference Include="..\MVVMBoiler.DataAccess\MVVMBoiler.DataAccess.csproj" />
     <ProjectReference Include="..\MVVMBoiler.Models\MVVMBoiler.Models.csproj" />
   </ItemGroup>
-
 </Project>
