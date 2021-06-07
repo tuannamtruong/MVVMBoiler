@@ -36,8 +36,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>-->
         <!--BUTTON-->
-        <Button Content="Delete" Command="{Binding DeleteCommand}" Width="50" HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Delete" Command="{Binding DeleteCommand}"  Width="50" HorizontalAlignment="Left" Margin="1,1,1,1"/>
+            <Button Content="Add" Command="{Binding AddCommand}"   Width="50" HorizontalAlignment="Left"  Margin="1,1,1,1"/>
+        </StackPanel>
         <!--CUSTOMER LISTVIEW-->
         <DataGrid ItemsSource="{Binding Customers}"
                   AutoGenerateColumns="False"
@@ -58,6 +66,16 @@
                         <DataTemplate>
                             <Button Content="Place Order"
                                     Command="{Binding DataContext.PlaceOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"
+                                    Margin="5" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit"
+                                    Command="{Binding DataContext.EditCustomerCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                     CommandParameter="{Binding}"
                                     Margin="5" />
                         </DataTemplate>

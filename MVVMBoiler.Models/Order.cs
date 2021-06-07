@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MVVMBoiler.Models
+﻿namespace MVVMBoiler.Models
 {
     public class Order
     {

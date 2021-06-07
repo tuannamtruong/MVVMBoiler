@@ -21,23 +21,30 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         #endregion FIELD
 
         #region CTOR
-        
+
         public CustomerListViewModel()
         {
             // Guard to check if the code is executed  in the designer 
             if(DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
                 return;
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
+            AddCommand = new RelayCommand(OnAdd);
             PlaceOrderCommand = new RelayCommand<Customer>(OnPlaceOrder);
+            EditCustomerCommand = new RelayCommand<Customer>(OnEditCustomer);
         }
+   
 
         #endregion CTOR
 
         #region PROPERTY/EVENT
 
         public event Action<int> PlaceOrderRequested = delegate { };
+        public event Action<Customer> AddCustomerRequested = delegate { };
+        public event Action<Customer> EditCustomerRequested = delegate { };
         public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand AddCommand { get; private set; }
         public RelayCommand<Customer> PlaceOrderCommand { get; private set; }
+        public RelayCommand<Customer> EditCustomerCommand { get; private set; }
         public ObservableCollection<Customer> Customers
         {
             get => _customers; set
@@ -60,7 +67,7 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         }
 
         #endregion PROPERTY
-        
+
         #region UI BEHAVIOR
 
         public async void LoadCustomers()
@@ -71,6 +78,16 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         #endregion UI BEHAVIOR
 
         #region EVENT HANDLER
+
+        private void OnAdd()
+        {
+            AddCustomerRequested(new Customer());
+        }
+        private void OnEditCustomer(Customer customer)
+        {
+            EditCustomerRequested(customer);
+        }
+
 
         private bool CanDelete()
         {
