@@ -7,11 +7,21 @@ using System.ComponentModel;
 
 namespace MVVMBoiler.UI.AppContexts.Customers
 {
+    /// <summary>
+    /// Showing list of customer.
+    /// </summary>
     public class CustomerListViewModel : ViewModelBase
     {
-        private ICustomersRepository _customersRepository = new CustomersRepository();
-        private ObservableCollection<Customer> _customers;
+        #region FIELD
 
+        private readonly ICustomersRepository _customersRepository = new CustomersRepository();
+        private ObservableCollection<Customer> _customers;
+        private Customer _selectedCustomer;
+
+        #endregion FIELD
+
+        #region CTOR
+        
         public CustomerListViewModel()
         {
             // Guard to check if the code is executed  in the designer 
@@ -21,15 +31,13 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             PlaceOrderCommand = new RelayCommand<Customer>(OnPlaceOrder);
         }
 
-        private void OnPlaceOrder(Customer customer)
-        {
-            PlaceOrderRequested(customer.Id);
-        }
+        #endregion CTOR
 
-        public RelayCommand<Customer> PlaceOrderCommand { get; private set; }
+        #region PROPERTY/EVENT
+
         public event Action<int> PlaceOrderRequested = delegate { };
-
         public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand<Customer> PlaceOrderCommand { get; private set; }
         public ObservableCollection<Customer> Customers
         {
             get => _customers; set
@@ -41,9 +49,6 @@ namespace MVVMBoiler.UI.AppContexts.Customers
                 }
             }
         }
-
-        private Customer _selectedCustomer;
-
         public Customer SelectedCustomer
         {
             get { return _selectedCustomer; }
@@ -53,12 +58,19 @@ namespace MVVMBoiler.UI.AppContexts.Customers
                 DeleteCommand.RaiseCanExecuteChanged();
             }
         }
+
+        #endregion PROPERTY
+        
+        #region UI BEHAVIOR
+
         public async void LoadCustomers()
         {
             Customers = new ObservableCollection<Customer>(await _customersRepository.GetAllAsync());
         }
 
-        #region ICommand
+        #endregion UI BEHAVIOR
+
+        #region EVENT HANDLER
 
         private bool CanDelete()
         {
@@ -70,6 +82,11 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             Customers.Remove(SelectedCustomer);
         }
 
-        #endregion ICommand
+        private void OnPlaceOrder(Customer customer)
+        {
+            PlaceOrderRequested(customer.Id);
+        }
+
+        #endregion EVENT HANDLER
     }
 }

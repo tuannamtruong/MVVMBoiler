@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace MVVMBoiler.UI.Bases
 {
+    /// <summary>
+    /// Base class for view model's property validation.
+    /// </summary>
     public class NotifyDataErrorInfoBase : ViewModelBase, INotifyDataErrorInfo
     {
         private Dictionary<string, List<string>> _errorsByPropertyName

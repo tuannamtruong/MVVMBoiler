@@ -2,10 +2,12 @@
 using MVVMBoiler.UI.AppContexts.OrderPrep;
 using MVVMBoiler.UI.AppContexts.Orders;
 using MVVMBoiler.UI.Bases;
-using System;
 
 namespace MVVMBoiler.UI
 {
+    /// <summary>
+    /// Setting which view is showed in which window region.
+    /// </summary>
     public class MainWindowViewModel : ViewModelBase
     {
         private CustomerListViewModel _customerListViewModel = new CustomerListViewModel();

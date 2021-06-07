@@ -5,6 +5,11 @@ using System.Runtime.CompilerServices;
 
 namespace MVVMBoiler.UI.Bases
 {
+    /// <summary>
+    /// Base class for model wrapper class. 
+    /// Validate property for db constraints and custom validation.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ModelWrapperBase<T> : NotifyDataErrorInfoBase
     {
         public ModelWrapperBase(T model)

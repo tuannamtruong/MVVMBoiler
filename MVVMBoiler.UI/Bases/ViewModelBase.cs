@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace MVVMBoiler.UI.Bases
 {
+    /// <summary>
+    /// Wrapper for View Model
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
