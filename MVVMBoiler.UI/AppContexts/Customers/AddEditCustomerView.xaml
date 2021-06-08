@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
+             xmlns:converter="clr-namespace:MVVMBoiler.UI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:NegatableBooleanToVisibilityConverter x:Key="TrueToVis" />
+        <converter:NegatableBooleanToVisibilityConverter x:Key="FalseToVis" Negate="True"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -15,7 +20,7 @@
               VerticalAlignment="Top"
               Margin="17,53,0,0"
               HorizontalAlignment="Left"
-              DataContext="{Binding Customer}" Grid.RowSpan="2">
+              DataContext="{Binding Customer}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -71,15 +76,17 @@
                      HorizontalAlignment="Left"
                      Grid.Column="1" />
         </Grid>
-        <!--<Grid Grid.Row="1">
+        <Grid Grid.Row="1">
             <Button Content="Save"
                     Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource TrueToVis}}"
                     HorizontalAlignment="Left"
                     Margin="25,5,0,0"
                     VerticalAlignment="Top"
                     Width="75" />
             <Button Content="Add"
                     Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource FalseToVis}}"
                     HorizontalAlignment="Left"
                     Margin="25,5,0,0"
                     VerticalAlignment="Top"
@@ -90,6 +97,6 @@
                     Margin="150,5,0,0"
                     VerticalAlignment="Top"
                     Width="75" />
-        </Grid>-->
+        </Grid>
     </Grid>
 </UserControl>

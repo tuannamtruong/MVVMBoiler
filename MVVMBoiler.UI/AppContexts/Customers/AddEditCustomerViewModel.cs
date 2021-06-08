@@ -19,7 +19,6 @@ namespace MVVMBoiler.UI.AppContexts.Customers
                 OnPropertyChanged();
             }
         }
-
         public void SetCustomer(Customer cust)
         {
             _editingCustomer = cust;
