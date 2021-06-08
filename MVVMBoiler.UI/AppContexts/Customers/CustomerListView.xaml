@@ -36,11 +36,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>-->
         <!--BUTTON-->
         <StackPanel Orientation="Horizontal">
             <Button Content="Delete" Command="{Binding DeleteCommand}"  Width="50" HorizontalAlignment="Left" Margin="1,1,1,1"/>

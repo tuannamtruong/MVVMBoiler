@@ -52,7 +52,7 @@
                    Grid.Column="0"
                    Content="First Name:" />
             <TextBox x:Name="firstNameTextBox"
-                     Text="{Binding FirstName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding FirstName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                      Grid.Row="0"
                      Grid.Column="1" />
             <Label VerticalAlignment="Center"

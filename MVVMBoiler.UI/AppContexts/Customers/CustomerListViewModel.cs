@@ -64,6 +64,7 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             {
                 _selectedCustomer = value;
                 DeleteCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged();
             }
         }
 

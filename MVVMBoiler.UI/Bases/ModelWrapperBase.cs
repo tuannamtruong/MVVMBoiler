@@ -12,12 +12,21 @@ namespace MVVMBoiler.UI.Bases
     /// <typeparam name="T"></typeparam>
     public class ModelWrapperBase<T> : NotifyDataErrorInfoBase
     {
+        private T model;
+
         public ModelWrapperBase(T model)
         {
             Model = model;
         }
 
-        public T Model { get; }
+        public T Model
+        {
+            get => model; set
+            {
+                model = value;
+                OnPropertyChanged();
+            }
+        }
 
         protected virtual void SetValue<TValue>(TValue value,
           [CallerMemberName]string propertyName = null)
