@@ -3,7 +3,6 @@ using MVVMBoiler.UI.AppContexts.Customers;
 using MVVMBoiler.UI.AppContexts.OrderPrep;
 using MVVMBoiler.UI.AppContexts.Orders;
 using MVVMBoiler.UI.Bases;
-using System;
 
 namespace MVVMBoiler.UI
 {
@@ -26,6 +25,12 @@ namespace MVVMBoiler.UI
             _customerListViewModel.PlaceOrderRequested += NavToOrder;
             _customerListViewModel.AddCustomerRequested += NavToAddCustomer;
             _customerListViewModel.EditCustomerRequested += NavToEditCustomer;
+            _addEditCustomerViewModel.AddOrEditDone += NavToCustomerList;
+        }
+
+        private void NavToCustomerList()
+        {
+            CurrentViewModel = _customerListViewModel;
         }
 
         private void NavToEditCustomer(Customer customer)
@@ -50,19 +55,12 @@ namespace MVVMBoiler.UI
 
         private void OnNavigate(string destViewModel)
         {
-            switch(destViewModel)
+            CurrentViewModel = destViewModel switch
             {
-                case nameof(OrderPrepViewModel):
-                    CurrentViewModel = _orderPrepViewModel;
-                    break;         
-                case nameof(AddEditCustomerViewModel):
-                    CurrentViewModel = _addEditCustomerViewModel;
-                    break;
-                case nameof(CustomerListViewModel):
-                default:
-                    CurrentViewModel = _customerListViewModel;
-                    break;
-            }
+                nameof(OrderPrepViewModel) => _orderPrepViewModel,
+                nameof(AddEditCustomerViewModel) => _addEditCustomerViewModel,
+                _ => _customerListViewModel,
+            };
         }
 
         public ViewModelBase CurrentViewModel
