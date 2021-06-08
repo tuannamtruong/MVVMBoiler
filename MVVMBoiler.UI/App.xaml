@@ -4,6 +4,27 @@
              xmlns:local="clr-namespace:MVVMBoiler.UI"
              Startup="Application_Startup">
     <Application.Resources>
-         
+            <Style TargetType="TextBox">
+                <!--Set red background on error-->
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="Background" Value="Red"/>
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},
+                        Path= (Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+                <!--Show reason of error under textbox-->
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="errorPlaceHolder"/>
+                                <TextBlock FontSize="12" Foreground="Red" Text ="{Binding ElementName=errorPlaceHolder,
+                                Path=AdornedElement.(Validation.Errors)[0].ErrorContent }"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
     </Application.Resources>
 </Application>

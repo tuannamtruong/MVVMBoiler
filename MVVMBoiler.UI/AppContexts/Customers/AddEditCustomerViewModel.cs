@@ -2,6 +2,7 @@
 using MVVMBoiler.UI.Bases;
 using MVVMBoiler.UI.Wrappers;
 using System;
+using System.ComponentModel;
 
 namespace MVVMBoiler.UI.AppContexts.Customers
 {
@@ -13,13 +14,13 @@ namespace MVVMBoiler.UI.AppContexts.Customers
 
         public AddEditCustomerViewModel()
         {
-            SaveCommand = new RelayCommand(OnSave, CanSave) ;
+            SaveCommand = new RelayCommand(OnSave, CanSave);
             CancelCommand = new RelayCommand(OnCancel);
         }
 
         private bool CanSave()
         {
-            return true;
+            return !Customer.HasErrors;
         }
 
         private void OnCancel()
@@ -44,9 +45,17 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         public void SetCustomer(Customer cust)
         {
             _editingCustomer = cust;
+            if(Customer != null)
+                Customer.ErrorsChanged -= RaiseCanExecuteChanged;
             Customer = new CustomerWrapper(cust);
+            Customer.ErrorsChanged += RaiseCanExecuteChanged;
         }
-        
+
+        private void RaiseCanExecuteChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            SaveCommand.RaiseCanExecuteChanged();
+        }
+
         public CustomerWrapper Customer
         {
             get { return _customer; }
@@ -55,7 +64,5 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         public event Action AddOrEditDone = delegate { };
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
-
-
     }
 }

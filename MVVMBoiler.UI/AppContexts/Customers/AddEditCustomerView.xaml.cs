@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using System.Runtime;
 
 namespace MVVMBoiler.UI.AppContexts.Customers
 {

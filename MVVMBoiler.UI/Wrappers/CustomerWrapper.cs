@@ -8,7 +8,7 @@ namespace MVVMBoiler.UI.Wrappers
     {
         public CustomerWrapper(Customer model) : base(model) { }
 
-        public int Id { get => Model.Id; set => SetValue(value); }
+        public int Id { get => Model.Id; set => SetValue(value); } 
         public string FirstName { get => GetValue<string>(); set => SetValue(value); }
         public string LastName { get => GetValue<string>(); set => SetValue(value); }
         public List<Order> Orders { get => GetValue<List<Order>>(); set => SetValue(value); }

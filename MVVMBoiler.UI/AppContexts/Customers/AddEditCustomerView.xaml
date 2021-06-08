@@ -10,6 +10,24 @@
     <UserControl.Resources>
         <converter:NegatableBooleanToVisibilityConverter x:Key="TrueToVis" />
         <converter:NegatableBooleanToVisibilityConverter x:Key="FalseToVis" Negate="True"/>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="3, 0, 0, 15" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="3, 0, 0, 15" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="23" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Width" Value="75" />
+            <Setter Property="Margin" Value="25,5,0,0" />
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -30,73 +48,40 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center"
-                   Grid.Row="0"
-                   Margin="3"
-                   HorizontalAlignment="Left"
+            <Label Grid.Row="0"
                    Grid.Column="0"
                    Content="First Name:" />
             <TextBox x:Name="firstNameTextBox"
-                     Width="120"
-                     VerticalAlignment="Center"
-                     Text="{Binding FirstName, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding FirstName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="0"
-                     Margin="3"
-                     Height="23"
-                     HorizontalAlignment="Left"
                      Grid.Column="1" />
             <Label VerticalAlignment="Center"
                    Grid.Row="1"
-                   Margin="3"
-                   HorizontalAlignment="Left"
                    Grid.Column="0"
                    Content="Last Name:" />
             <TextBox x:Name="lastNameTextBox"
-                     Width="120"
-                     VerticalAlignment="Center"
-                     Text="{Binding LastName, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding LastName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="1"
-                     Margin="3"
-                     Height="23"
-                     HorizontalAlignment="Left"
                      Grid.Column="1" />
-            <Label VerticalAlignment="Center"
-                   Grid.Row="2"
+            <Label Grid.Row="2"
                    Margin="3"
-                   HorizontalAlignment="Left"
                    Grid.Column="0"
                    Content="Id:" />
             <TextBox x:Name="idTextBox"
-                     Width="120"
-                     VerticalAlignment="Center"
                      Text="{Binding Id, ValidatesOnNotifyDataErrors=True}"
                      Grid.Row="2"
-                     Margin="3"
-                     Height="23"
-                     HorizontalAlignment="Left"
                      Grid.Column="1" />
         </Grid>
         <Grid Grid.Row="1">
             <Button Content="Save"
                     Command="{Binding SaveCommand}"
-                    Visibility="{Binding EditMode, Converter={StaticResource TrueToVis}}"
-                    HorizontalAlignment="Left"
-                    Margin="25,5,0,0"
-                    VerticalAlignment="Top"
-                    Width="75" />
+                    Visibility="{Binding EditMode, Converter={StaticResource TrueToVis}}"/>
             <Button Content="Add"
                     Command="{Binding SaveCommand}"
-                    Visibility="{Binding EditMode, Converter={StaticResource FalseToVis}}"
-                    HorizontalAlignment="Left"
-                    Margin="25,5,0,0"
-                    VerticalAlignment="Top"
-                    Width="75" />
+                    Visibility="{Binding EditMode, Converter={StaticResource FalseToVis}}"/>
             <Button Content="Cancel"
                     Command="{Binding CancelCommand}"
-                    HorizontalAlignment="Left"
-                    Margin="150,5,0,0"
-                    VerticalAlignment="Top"
-                    Width="75" />
+                    Margin="150,5,0,0"/>
         </Grid>
     </Grid>
 </UserControl>
