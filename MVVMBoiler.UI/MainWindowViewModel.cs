@@ -1,5 +1,6 @@
 ﻿using MVVMBoiler.Models;
 using MVVMBoiler.UI.AppContexts.Customers;
+using MVVMBoiler.UI.AppContexts.Footer;
 using MVVMBoiler.UI.AppContexts.OrderPrep;
 using MVVMBoiler.UI.AppContexts.Orders;
 using MVVMBoiler.UI.Bases;
@@ -16,8 +17,9 @@ namespace MVVMBoiler.UI
         private OrderViewModel _orderViewModel = new OrderViewModel();
         private OrderPrepViewModel _orderPrepViewModel = new OrderPrepViewModel();
         private AddEditCustomerViewModel _addEditCustomerViewModel;
-
-        private ViewModelBase currentViewModel;
+        private FooterViewModel _footerViewModel = new FooterViewModel();
+        private ViewModelBase _currentViewModel;
+        private ViewModelBase _otherViewModel;
 
         public RelayCommand<string> NavigateCommand { get; set; }
         public MainWindowViewModel(ICustomersRepository customersRepository)
@@ -29,6 +31,7 @@ namespace MVVMBoiler.UI
             _customerListViewModel.AddCustomerRequested += NavToAddCustomer;
             _customerListViewModel.EditCustomerRequested += NavToEditCustomer;
             _addEditCustomerViewModel.AddOrEditDone += NavToCustomerList;
+            OtherViewModel = _footerViewModel;
         }
 
         private void NavToCustomerList()
@@ -68,12 +71,13 @@ namespace MVVMBoiler.UI
 
         public ViewModelBase CurrentViewModel
         {
-            get => currentViewModel; set
+            get => _currentViewModel; set
             {
-                currentViewModel = value;
+                _currentViewModel = value;
                 OnPropertyChanged();
             }
         }
 
+        public ViewModelBase OtherViewModel { get => _otherViewModel; set => _otherViewModel = value; }
     }
 }

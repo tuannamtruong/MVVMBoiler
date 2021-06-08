@@ -5,6 +5,7 @@
         xmlns:customers="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
         xmlns:orderPrep="clr-namespace:MVVMBoiler.UI.AppContexts.OrderPrep"
         xmlns:orders="clr-namespace:MVVMBoiler.UI.AppContexts.Orders"
+        xmlns:footer="clr-namespace:MVVMBoiler.UI.AppContexts.Footer"
         x:Class="MVVMBoiler.UI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -22,14 +23,24 @@
         <DataTemplate DataType="{x:Type customers:AddEditCustomerViewModel}">
             <customers:AddEditCustomerView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type footer:FooterViewModel}">
+            <footer:FooterView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="NavBar">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="NavBar" 
+              Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -44,9 +55,14 @@
                     CommandParameter="OrderPrepViewModel"
                     Grid.Column="2" />
         </Grid>
-        <Grid x:Name="MainContent"
+        <Grid x:Name="MainContent" 
+              Grid.ColumnSpan="3"
               Grid.Row="1">
             <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
+        <Grid Grid.Row="2"
+              Grid.ColumnSpan="3">
+            <ContentControl Content="{Binding OtherViewModel}"/>
         </Grid>
     </Grid>
 </Window>

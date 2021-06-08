@@ -9,7 +9,7 @@ using System.ComponentModel;
 namespace MVVMBoiler.UI.AppContexts.Customers
 {
     /// <summary>
-    /// Create new or update existed customer against the DB.
+    /// Create new or edit existed customer against the DB.
     /// </summary>
     class AddEditCustomerViewModel : ViewModelBase
     {
