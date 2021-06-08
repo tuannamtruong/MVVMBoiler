@@ -1,12 +1,13 @@
 ﻿using MVVMBoiler.Models;
 using MVVMBoiler.UI.Bases;
+using MVVMBoiler.UI.Wrappers;
 
 namespace MVVMBoiler.UI.AppContexts.Customers
 {
     class AddEditCustomerViewModel : ViewModelBase
     {
         private bool _editMode;
-        private Customer _customer;
+        private CustomerWrapper _customer;
         private Customer _editingCustomer = null;
 
         public bool EditMode
@@ -22,9 +23,10 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         public void SetCustomer(Customer cust)
         {
             _editingCustomer = cust;
+            Customer = new CustomerWrapper(cust);
         }
-
-        public Customer Customer
+        
+        public CustomerWrapper Customer
         {
             get { return _customer; }
             set { _customer = value; }

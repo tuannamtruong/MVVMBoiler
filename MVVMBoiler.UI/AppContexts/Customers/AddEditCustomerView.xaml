@@ -13,11 +13,10 @@
         </Grid.RowDefinitions>
         <Grid x:Name="grid1"
               VerticalAlignment="Top"
-              Margin="17,15,0,0"
+              Margin="17,53,0,0"
               HorizontalAlignment="Left"
-              DataContext="{Binding Customer}">
+              DataContext="{Binding Customer}" Grid.RowSpan="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -61,27 +60,12 @@
                    Margin="3"
                    HorizontalAlignment="Left"
                    Grid.Column="0"
-                   Content="Email:" />
-            <TextBox x:Name="emailTextBox"
+                   Content="Id:" />
+            <TextBox x:Name="idTextBox"
                      Width="120"
                      VerticalAlignment="Center"
-                     Text="{Binding Email, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding Id, ValidatesOnNotifyDataErrors=True}"
                      Grid.Row="2"
-                     Margin="3"
-                     Height="23"
-                     HorizontalAlignment="Left"
-                     Grid.Column="1" />
-            <Label VerticalAlignment="Center"
-                   Grid.Row="3"
-                   Margin="3"
-                   HorizontalAlignment="Left"
-                   Grid.Column="0"
-                   Content="Phone:" />
-            <TextBox x:Name="phoneTextBox"
-                     Width="120"
-                     VerticalAlignment="Center"
-                     Text="{Binding Phone, ValidatesOnNotifyDataErrors=True}"
-                     Grid.Row="3"
                      Margin="3"
                      Height="23"
                      HorizontalAlignment="Left"
