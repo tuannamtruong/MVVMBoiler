@@ -98,8 +98,8 @@ namespace MVVMBoiler.UI.AppContexts.Customers
 
         private async void OnDelete()
         {
-            Customers.Remove(SelectedCustomer);
             await _customersRepository.DeleteCustomerAsync(SelectedCustomer.Id);
+            Customers.Remove(SelectedCustomer);
         }
 
         private void OnPlaceOrder(Customer customer)

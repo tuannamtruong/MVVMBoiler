@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace MVVMBoiler.UI.Converters
+namespace MVVMBoiler.UI.Ultilities
 {
     public class NegatableBooleanToVisibilityConverter : IValueConverter
     {

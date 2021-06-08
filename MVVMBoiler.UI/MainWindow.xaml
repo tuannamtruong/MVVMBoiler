@@ -2,30 +2,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:customers="clr-namespace:MVVMBoiler.UI.AppContexts.Customers"
-        xmlns:orderPrep="clr-namespace:MVVMBoiler.UI.AppContexts.OrderPrep"
-        xmlns:orders="clr-namespace:MVVMBoiler.UI.AppContexts.Orders"
-        xmlns:footer="clr-namespace:MVVMBoiler.UI.AppContexts.Footer"
         x:Class="MVVMBoiler.UI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type customers:CustomerListViewModel}">
-            <customers:CustomerListView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type orders:OrderViewModel}">
-            <orders:OrderView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type orderPrep:OrderPrepViewModel}">
-            <orderPrep:OrderPrepView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type customers:AddEditCustomerViewModel}">
-            <customers:AddEditCustomerView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type footer:FooterViewModel}">
-            <footer:FooterView/>
-        </DataTemplate>
+        <ResourceDictionary Source="\Resources\DictionaryViewViewModel.xaml"/>
     </Window.Resources>
 
     <Grid>
