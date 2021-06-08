@@ -95,9 +95,10 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             return SelectedCustomer != null;
         }
 
-        private void OnDelete()
+        private async void OnDelete()
         {
             Customers.Remove(SelectedCustomer);
+            await _customersRepository.DeleteCustomerAsync(SelectedCustomer.Id);
         }
 
         private void OnPlaceOrder(Customer customer)

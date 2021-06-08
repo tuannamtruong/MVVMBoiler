@@ -10,8 +10,7 @@ namespace MVVMBoiler.UI.AppContexts.Customers
     class AddEditCustomerViewModel : ViewModelBase
     {
         private bool _editMode;
-        private CustomerWrapper _customer;
-        private ICustomersRepository _customersRepository ;
+        private readonly ICustomersRepository _customersRepository ;
 
         public AddEditCustomerViewModel(ICustomersRepository customersRepository)
         {
@@ -30,8 +29,12 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             AddOrEditDone();
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
+            if(EditMode)
+                await _customersRepository.UpdateCustomerAsync(Customer.Model);
+            else
+                await _customersRepository.AddCustomerAsync(Customer.Model);
             AddOrEditDone();
         }
 
@@ -57,11 +60,7 @@ namespace MVVMBoiler.UI.AppContexts.Customers
             SaveCommand.RaiseCanExecuteChanged();
         }
 
-        public CustomerWrapper Customer
-        {
-            get { return _customer; }
-            set { _customer = value; }
-        }
+        public CustomerWrapper Customer { get; set; }
         public event Action AddOrEditDone = delegate { };
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }

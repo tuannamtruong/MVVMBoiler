@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MVVMBoiler.UI.Wrappers
 {
-    internal class CustomerWrapper : ModelWrapperBase<Customer>
+    public class CustomerWrapper : ModelWrapperBase<Customer>
     {
         public CustomerWrapper(Customer model) : base(model) { }
 
