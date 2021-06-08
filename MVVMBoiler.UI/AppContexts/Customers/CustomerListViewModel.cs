@@ -85,11 +85,11 @@ namespace MVVMBoiler.UI.AppContexts.Customers
         {
             AddCustomerRequested(new Customer());
         }
+
         private void OnEditCustomer(Customer customer)
         {
             EditCustomerRequested(customer);
         }
-
 
         private bool CanDelete()
         {

@@ -28,6 +28,7 @@
             <Setter Property="Margin" Value="25,5,0,0" />
         </Style>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

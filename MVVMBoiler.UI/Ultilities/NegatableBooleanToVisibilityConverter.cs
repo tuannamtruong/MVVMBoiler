@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace MVVMBoiler.UI.Ultilities
 {
+    /// <summary>
+    /// Toggle visibility of an UI element in UserControl by a boolean property.
+    /// </summary>
     public class NegatableBooleanToVisibilityConverter : IValueConverter
     {
         public NegatableBooleanToVisibilityConverter()
