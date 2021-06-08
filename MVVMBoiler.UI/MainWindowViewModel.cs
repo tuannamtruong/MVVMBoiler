@@ -3,6 +3,7 @@ using MVVMBoiler.UI.AppContexts.Customers;
 using MVVMBoiler.UI.AppContexts.OrderPrep;
 using MVVMBoiler.UI.AppContexts.Orders;
 using MVVMBoiler.UI.Bases;
+using MVVMBoiler.UI.Services.Data;
 
 namespace MVVMBoiler.UI
 {
@@ -11,16 +12,18 @@ namespace MVVMBoiler.UI
     /// </summary>
     public class MainWindowViewModel : ViewModelBase
     {
-        private CustomerListViewModel _customerListViewModel = new CustomerListViewModel();
+        private CustomerListViewModel _customerListViewModel;
         private OrderViewModel _orderViewModel = new OrderViewModel();
         private OrderPrepViewModel _orderPrepViewModel = new OrderPrepViewModel();
-        private AddEditCustomerViewModel _addEditCustomerViewModel = new AddEditCustomerViewModel();
-        
+        private AddEditCustomerViewModel _addEditCustomerViewModel;
+
         private ViewModelBase currentViewModel;
 
         public RelayCommand<string> NavigateCommand { get; set; }
-        public MainWindowViewModel()
+        public MainWindowViewModel(ICustomersRepository customersRepository)
         {
+            _addEditCustomerViewModel = new AddEditCustomerViewModel(customersRepository);
+            _customerListViewModel = new CustomerListViewModel(customersRepository);
             NavigateCommand = new RelayCommand<string>(OnNavigate);
             _customerListViewModel.PlaceOrderRequested += NavToOrder;
             _customerListViewModel.AddCustomerRequested += NavToAddCustomer;

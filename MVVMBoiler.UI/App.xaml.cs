@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Autofac;
 
 namespace MVVMBoiler.UI
 {
@@ -7,9 +8,11 @@ namespace MVVMBoiler.UI
     /// </summary>
     public partial class App : Application
     {
-        private async void Application_Startup(object sender, StartupEventArgs e)
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MainWindow window = new MainWindow();
+            Startup startup = new Startup();
+            var container = startup.Configure();
+            MainWindow window = container.Resolve<MainWindow>();
             window.Show();
         }
     }

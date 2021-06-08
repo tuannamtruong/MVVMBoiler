@@ -14,7 +14,7 @@ namespace MVVMBoiler.UI.AppContexts.Customers
     {
         #region FIELD
 
-        private readonly ICustomersRepository _customersRepository = new CustomersRepository();
+        private readonly ICustomersRepository _customersRepository;
         private ObservableCollection<Customer> _customers;
         private Customer _selectedCustomer;
 
@@ -22,8 +22,9 @@ namespace MVVMBoiler.UI.AppContexts.Customers
 
         #region CTOR
 
-        public CustomerListViewModel()
+        public CustomerListViewModel(ICustomersRepository customersRepository)
         {
+            _customersRepository = customersRepository;
             // Guard to check if the code is executed  in the designer 
             if(DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
                 return;
